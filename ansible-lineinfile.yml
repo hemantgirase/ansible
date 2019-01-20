@@ -1,0 +1,52 @@
+---
+- hosts: myhosts
+  tasks:
+    - name: Add the line to a file - method 1
+      lineinfile:
+        path: /tmp/testfile1.txt
+        line: 'This line1 should be added'
+        create: yes
+
+    - name: Add the line to a file - method 2
+      lineinfile:
+        path: /tmp/testfile1.txt
+        line: 'This line2 should be added'
+        state: present
+
+    - name: Delete the line from a file
+      lineinfile:
+        path: /tmp/testfile1.txt
+        line: 'This line1 should be added'
+        state: absent
+################################################################################
+    - name: To test the insert before option
+      lineinfile:
+        path: /tmp/testfile1.txt
+        line: 'This line1 should be added to test insert before option'        
+        insertbefore: 'hemant'
+
+    - name: To test the insert before option with first match as yes
+      lineinfile:
+        path: /tmp/testfile1.txt
+        line: 'This line1 should be added to test insert before option with first match as yes'
+        insertbefore: 'hemant'
+        firstmatch: yes
+################################################################################
+    - name: To test the insert after option
+      lineinfile:
+        path: /tmp/testfile1.txt
+        line: 'This line1 should be added to test insert after option'
+        insertafter: hemant
+
+    - name: To test the insert after option with first match as yes
+      lineinfile:
+        path: /tmp/testfile1.txt
+        line: 'This line1 should be added to test insert after option with first match as yes'
+        insertafter: 'hemant'
+        firstmatch: yes
+################################################################################
+    - name: To replace the regular expression with the one in line 
+      lineinfile:
+        path: /tmp/testfile1.txt
+        line: 'deepak'
+        regexp: 'hemant'

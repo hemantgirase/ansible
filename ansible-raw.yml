@@ -1,0 +1,6 @@
+---
+# This will use "raw" module
+- hosts: myhosts
+  tasks:
+    - name: To uninstall python
+      raw: yum remove python -y

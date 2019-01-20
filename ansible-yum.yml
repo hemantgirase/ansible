@@ -1,0 +1,23 @@
+---
+# This will use "yum" module
+- hosts: myhosts
+  tasks:
+    - name: install ftp
+      yum:
+        name: ftp
+        state: present
+
+    - name: install telnet
+      yum:
+        name: telnet
+        state: present 
+
+    - name: uninstall ftp
+      yum:
+        name: ftp
+        state: absent
+
+    - name: uninstall telnet
+      yum:
+        name: telnet
+        state: absent  

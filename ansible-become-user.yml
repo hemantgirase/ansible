@@ -1,0 +1,10 @@
+---
+# This will use "become" and "become_user"
+- hosts: myhosts
+  become: true
+  become_user: root
+  tasks:
+    - name: copy file
+      copy:
+        src: /etc/ansible/ansible-yum.log
+        dest: /tmp/ansible-yum.log

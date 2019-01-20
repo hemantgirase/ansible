@@ -1,0 +1,56 @@
+---
+##########################################################
+# - Stop httpd service                                   #
+# - start httpd service                                  #
+# - create directory                                     #
+# - delete file                                          #
+# - create file                                          #
+# - delete directory                                     #
+# - copy the ansible playbook file                       #
+##########################################################
+- hosts: myhosts
+  tasks:
+    - name: stop httpd service
+      service: 
+        name: httpd.service
+        state: stopped
+
+    - name: start httpd service
+      service:
+        name: httpd.service
+        state: started
+
+    - name: create directory
+      file:
+        path: /hemant/hemant1/hemant2
+        state: directory
+        owner: hemant
+        group: hemant
+        mode: 0777
+
+    - name: delete file
+      file:
+        path: /hemant/hemant1/hemant2/file1.txt
+        state: absent
+
+    - name: create file
+      file:
+        path: /hemant/hemant1/hemant2/file1.txt
+        state: touch
+        owner: hemant
+        group: hemant
+        mode: 0777        
+   
+#    - name: delete directory
+#      file:
+#        path: /hemant/hemant1/hemant2
+#        state: absent
+
+    - name: copy the anisble playbook file
+      copy:
+        src: /etc/ansible/adhoctasks.yml
+        dest: /tmp/adhoctasks.yml
+        owner: hemant
+        group: hemant
+        mode: 0777
+        backup: yes

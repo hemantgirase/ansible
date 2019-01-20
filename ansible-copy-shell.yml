@@ -1,0 +1,17 @@
+---
+- hosts: myhosts
+  tasks:
+    - name: copy file
+      copy:
+        src: /etc/ansible/display-hostname.sh
+        dest: /tmp/display-hostname.sh
+        mode: 0777
+     
+#    - name: execute the shell remotely
+#      shell: /tmp/display-hostname.sh  
+
+    - name: execute the shell by changing directory remotely
+      shell: /tmp/display-hostname.sh >> logfile.log
+      args:
+        chdir: /tmp
+        creates: logfile.log

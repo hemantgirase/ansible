@@ -1,0 +1,6 @@
+---
+# This will use the reboot module
+- hosts: myhosts
+  tasks:
+    - name: reboot hosts
+      reboot:

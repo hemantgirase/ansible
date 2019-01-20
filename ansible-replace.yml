@@ -1,0 +1,47 @@
+---
+- hosts: myhosts
+  tasks:
+    - name: To replace all occurances of the regular exp with value in replace
+      replace:
+        path: /tmp/testfile1.txt
+        regexp: 'hemant'
+        replace: 'deepak'   
+
+    - name: To replace regular expression with value in replace using after
+      replace:
+        path: /tmp/testfile1.txt
+        regexp: 'deepak'
+        replace: 'hemant'
+        after: 'Replacing should happen after this line' 
+
+    - name: To replace regular expression with value in replace using after and backup the file
+      replace:
+        path: /tmp/testfile1.txt
+        regexp: 'deepak'
+        replace: 'hemant'
+        after: 'Replacing should happen after this line' 
+        backup: yes
+
+    - name: To replace regular exp with value in replace using before
+      replace:
+        path: /tmp/testfile1.txt
+        regexp: 'deepak'
+        replace: 'hemant'
+        before: 'Replacing should happen before this line'
+
+    - name: To replace regular exp with value in replace using before and backup the file
+      replace:
+        path: /tmp/testfile1.txt
+        regexp: 'deepak'
+        replace: 'hemant'
+        before: 'Replacing should happen before this line'
+        backup: yes
+#### Below didn't work
+    - name: To replace regular exp with value in replace using after and before
+      replace:
+        path: /tmp/testfile1.txt
+        regexp: 'deepak'
+        replace: 'hemant'
+        after: 'Replacing should happen after this line'
+        before: 'Replacing should happen before this line'
+        backup: yes

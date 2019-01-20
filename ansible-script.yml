@@ -1,0 +1,12 @@
+---
+# This is to copy a script to remove machine and then execute it
+- hosts: myhosts
+  tasks:
+#    - name: copy the script
+#      copy:
+#        src: /etc/ansible/display-hostname.sh
+#        dest: /tmp/display-hostname.sh
+#        mode: 0777
+
+    - name: execute the script
+      script: /etc/ansible/display-hostname.sh

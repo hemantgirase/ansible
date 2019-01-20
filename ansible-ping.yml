@@ -1,0 +1,7 @@
+---
+# This will use the "ping" module.
+- hosts: myhosts
+  tasks:
+    - name: ping test
+      ping:
+        data: successful_message
