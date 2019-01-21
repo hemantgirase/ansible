@@ -1,0 +1,76 @@
+---
+- hosts: myhosts
+  tasks:
+    - name: To archive a file in the same location and keep the original file
+      archive:
+        path: /tmp/testfile1.txt
+
+    - name: To archive a file in the same location and remove the original file
+      archive:
+        path: /tmp/testfile1.txt
+        remove: yes 
+
+    - name: To create the directory
+      file:
+        path: /tmp/tempdirectory
+        state: directory
+
+    - name: To archive a file in a different location
+      archive:
+        path: /tmp/testfile1.txt
+        dest: /tmp/tempdirectory/testfile1.txt.gz
+
+    - name: To delete the directory
+      file:
+        path: /tmp/tempdirectory
+        state: absent
+
+    - name: To archive a file in a different location and remove the original file
+      archive:
+        path: /tmp/testfile1.txt
+        dest: /tmp/tempdirectory/testfile1.txt.gz
+        remove: yes
+
+    - name: To archive a directory in the same location and keep the original directory
+      archive:
+        path: /tmp/tempdirectory/*
+        dest: /tmp/tempdirectory.gz
+        format: gz
+#### Below doesn't work
+    - name: To archive a directory in the same location and remove the original directory
+      archive:
+        path: /tmp/tempdirectory
+        dest: /tmp/tempdirectory.gz
+        format: gz
+        remove: yes
+
+    - name: To archive a directory in a different location and keep the original directory
+      archive:
+        path: /tmp/tempdirectory
+        dest: /tmp/tempdirectoryarch/tempdirectory.gz
+        format: gz
+#### Below doesn't work
+    - name: To archive a directory in a different location and keep the original directory
+      archive:
+        path: /tmp/tempdirectory
+        dest: /tmp/tempdirectoryarch/tempdirectory.gz
+        format: gz
+        remove: yes
+
+    - name: To archive a directory in the same location, keep the original directory and exclude some paths
+      archive:
+        path: /tmp/tempdirectory/*
+        dest: /tmp/tempdirectory.gz
+        format: gz
+        exclude_path: /tmp/tempdirectory/dont*
+
+    - name: To archive different paths and exclude some paths
+      archive:
+        path:
+          - /tmp/file*
+          - /tmp/tempdirectory/temp*
+        dest: /tmp/newarchive.gz
+        exclude_path: 
+          - /tmp/tempdirectory/tempdirectory2
+          - /tmp/tempdirectory/tempdirectory3 
+        format: gz

@@ -1,0 +1,107 @@
+---
+- hosts: myhosts
+  tasks:
+    - name: To check if the file exists
+      stat:
+        path: /tmp/file6.txt
+      register: stat_result
+
+    - debug:
+        msg: "File exists ..."
+      when: stat_result.stat.exists == True
+    - debug:
+        msg: "File is missing ..."
+      when: stat_result.stat.exists == False 
+
+    - name: To create the file based on result from stat (if the file is missing)
+      file:
+        path: /tmp/file6.txt
+        state: touch
+      when: stat_result.stat.exists == False
+
+    - name: To delete the file based on result from stat (if the file exists)
+      file:
+        path: /tmp/file6.txt
+        state: absent
+      when: stat_result.stat.exists == True 
+
+    - name: To check if the directory exists
+      stat:
+        path: /tmp/tempdirectory
+      register: stat_result
+    - debug:
+        msg: "Directory exists ..."
+      when: stat_result.stat.exists == True
+    - debug:
+        msg: "Directory is missing ..."
+      when: stat_result.stat.exists == False
+    
+    - name: To create the directory based on result from stat (if the directory is missing)
+      file:
+        path: /tmp/tempdirectory
+        state: directory
+      when: stat_result.stat.exists == False
+
+    - name: To delete the directory based on result from stat (if the directory exists)
+      file:
+        path: /tmp/tempdirectory
+        state: absent
+      when: stat_result.stat.exists == True
+
+    - name: To get all the details for a file
+      stat:
+        path: /tmp/file1.txt
+      register: stat_result
+    - debug:
+        var: stat_result.stat    
+#### Below doesn't work
+    - name: To get all the details for multiple files
+      stat:
+        path: 
+          - /tmp/file1.txt
+          - /tmp/file2.txt
+          - /tmp/file3.txt
+          - /tmp/file4.txt
+          - /tmp/file5.txt
+      register: stat_result
+    - debug:
+        var: stat_result.stat 
+
+    - name: To get all the details for a directory
+      stat:
+        path: /tmp/tempdirectory1
+      register: stat_result
+    - debug:
+        var: stat_result.stat    
+#### Below doesn't work
+    - name: To get all the details for multiple directories
+      stat:
+        path: 
+          - /tmp/tempdirectory1
+          - /tmp/tempdirectory2
+          - /tmp/tempdirectory3
+      register: stat_result
+    - debug:
+        var: stat_result.stat    
+
+    - name: To get checksum for a file
+      stat:
+        path: /tmp/file1.txt
+        get_checksum: yes
+        checksum_algorithm: md5
+        #checksum_algorithm: sha1
+        #checksum_algorithm: sha224
+        #checksum_algorithm: sha256
+        #checksum_algorithm: sha384
+        #checksum_algorithm: sha512
+      register: stat_result
+    - debug:
+        var: stat_result.stat.checksum
+
+    - name: To check the ownership of a file and mark the step as failure if ownership doesn't match
+      stat:
+        path: /tmp/file1.txt
+      register: stat_result
+    - fail:
+        msg: "File is not owned by hemant"
+      when: stat_result.stat.pw_name != 'hemant'
