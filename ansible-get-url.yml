@@ -1,0 +1,7 @@
+---
+- hosts: myhosts
+  tasks:
+    - name: To download a file using an URL
+      get_url:
+        url: http://mirror.centos.org/centos/7/extras/x86_64/Packages/ansible-2.4.2.0-2.el7.noarch.rpm
+        dest: /tmp/ansible-2.4.2.0-2.el7.noarch.rpm
