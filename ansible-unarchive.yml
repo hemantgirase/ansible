@@ -1,0 +1,23 @@
+---
+- hosts: myhosts
+  tasks:
+    - name: To unarchive a file on remote host
+      unarchive:
+        src: /tmp/testfile1.txt.zip
+        dest: /tmp
+        remote_src: yes
+#### Below doesn't work for .gz files
+    - name: To unarchive a file on remote host
+      unarchive:
+        src: /tmp/testfile1.txt.tgz
+        dest: /tmp
+        remote_src: yes
+
+    - name: To unarchive a directory on remote host
+      unarchive:
+        src: /tmp/tempdirectory.gz
+        dest: /tmp
+        remote_src: yes
+
+#### Read about extra_opts
+
