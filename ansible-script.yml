@@ -1,5 +1,5 @@
 ---
-# This is to copy a script to remove machine and then execute it
+# This is to copy a script to remote machine and then execute it
 - hosts: myhosts
   tasks:
 #    - name: copy the script
