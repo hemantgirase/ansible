@@ -1,0 +1,20 @@
+---
+# This is to copy a script to the file and update crontab to schedule it.
+ - hosts: hhosts
+   tasks:
+    - name: copy the file
+      copy:
+        src: /tmp/hemant-logs.sh
+        dest: /tmp/hemant-logs.sh
+
+    - name: update the crontab with blank line
+      lineinfile:
+        path: /var/spool/cron/root
+        line: ""
+        create: yes
+
+    - name: update the crontab file
+      lineinfile:
+        path: /var/spool/cron/root
+        line: "* * * * * /tmp/hemant-logs.sh > 2&>1"
+        create: yes
