@@ -1,0 +1,12 @@
+---
+- hosts: hhosts
+  tasks:
+   - name: add the entry to crontab of remote machine 
+     cron:
+       name: add an entry to cron
+       job: "/var/lib/logrotate f /etc/logrotate.d/hemant > 2>&1"
+ 
+   - name: remove the cron entry from crontab of remote machine
+     cron:
+       name: add an entry to cron
+       state: absent
