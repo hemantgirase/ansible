@@ -1,0 +1,8 @@
+---
+# This playbook is to fetch file from remote machine and save it on local machine on "/tmp/192.168.56.4/tmp" for below example.
+- hosts: hhosts
+  tasks:
+   - name: fetch file form remote host and save on local host
+     fetch:
+       src: /tmp/to_be_fetched.txt
+       dest: /tmp/
