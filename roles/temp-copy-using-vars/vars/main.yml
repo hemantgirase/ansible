@@ -1,0 +1,5 @@
+---
+# vars file for temp-copy-using-vars
+source_path_file: /tmp
+destination_path_file: /tmp
+file_name: temp-copy-using-vars.txt

@@ -1,0 +1,3 @@
+---
+# tasks file for temp-copy-using-defaults
+- include: temp-copy.yml

@@ -1,0 +1,5 @@
+---
+- name: Copy file to a node using vars
+  copy:
+    src: "{{ source_path_file }}/{{ file_name }}"
+    dest: "{{ destination_path_file }}/{{ file_name }}"

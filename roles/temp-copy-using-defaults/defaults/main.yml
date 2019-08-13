@@ -1,0 +1,5 @@
+---
+# defaults file for temp-copy-using-defaults
+source_path_file: /tmp
+destination_path_file: /tmp
+file_name: temp-copy-using-defaults.txt

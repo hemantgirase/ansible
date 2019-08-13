@@ -1,4 +1,0 @@
----
-# defaults file for tempcopy
-source_path_file: /tmp/tempcopy.txt
-destination_path_file: /tmp/tempcopy.txt

@@ -1,5 +1,0 @@
----
-- name: this is to copy file
-  copy:
-    src: "{{ source_path_file }}"
-    dest: "{{ destination_path_file }}"
