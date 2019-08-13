@@ -1,0 +1,3 @@
+---
+# tasks file for tempcopy
+- include: copy-file.yml
