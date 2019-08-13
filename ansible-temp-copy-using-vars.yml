@@ -1,0 +1,4 @@
+---
+- hosts: hhosts
+  roles:
+   - temp-copy-using-vars
